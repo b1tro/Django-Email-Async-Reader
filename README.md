@@ -23,6 +23,6 @@ docker compose up
 ### Следующий этап - загрузка данных от почты в базу данных:
 После успешного запуска контейнера переходим по адресу **http://localhost/admin** и авторизуемся как ***admin:admin***.
 В админ-панели добавляем экземпляр модели TargetEmail, где указываем почту, пароль приложения, а также выбираем используемый сервис:
-![Импортирование данных от почты в базу данных][https://github.com/b1tro/Django-Email-Async-Reader/blob/main/readme_src/images/target_email.jpg]
+![Импортирование данных от почты в базу данных][https://github.com/b1tro/Django-Email-Async-Reader/blob/main/readme_src/images/target_email.jpg?raw=true]
 
 ### Сервис готов к работе.
