@@ -13,6 +13,7 @@ def detail(request, service, uid):
         return render(request, 'detail.html', {"message": message})
     except EmailMessageFile.DoesNotExist:
         raise Http404("Сообщение не найдено в системе")
+        
 def downoald(request, service, message, file_id):
     # Находим нужный файл
     file = get_object_or_404(EmailMessageFile, message__service = service, message__uid=message, id=file_id)
