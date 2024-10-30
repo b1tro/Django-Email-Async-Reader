@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ message.subject }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-dark text-light">
+    <a href="{% url 'index' %}">
+        <h4 class="fs-4 mx-5 mt-5">К списку</h4>
+    </a>
+    <div class="container mt-5 border border-white">
+        <p><b>Отправитель</b>: {{ message.email_from }}</p>
+        <p><b>Тема</b>: {{ message.subject }}</p>
+        <p><b>Дата отправления</b>: {{ message.date_sent }}</p>
+        <p><b>Содержание</b>: {{ message.text }}</p>
+    </div>
+    {% if message.files.all %}
+            <div class="container border border-white">
+                <p>Прикрепленные файлы:</p>
+                {% for file in message.files.all %}
+                    <p>
+                        <a href="{{ file.get_absolute_uri }}">
+                            {{ file.file.name }}
+                        </a>
+                    </p>
+                {% endfor %}
+            </div>
+    {% endif %}
+</body>

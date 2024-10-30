@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Reader</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark text-light">
+<h1 class="text-center mt-3">Email Reader</h1>
+
+<div class="container mb-5">
+    <select id="email_selector" class="form-select form-select-sm w-auto">
+        <option selected>Выберите email</option>
+        {% for email in emails_in_system %}
+            <option value="{{ email.email }}" data-service="{{ email.get_server_display }}">{{ email.email }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+
+<div class="container">
+
+    <div class="progress" style="height:30px; position: relative; text-align: center;">
+        <div class="progress-bar bg-success" id="progressbar" style="width: 0%">
+            <span id="progress_count" class="fw-bold fs-6 text-dark" style="position: absolute; width: 100%;">0</span>
+        </div>
+    </div>
+
+    <table class="table table-dark border border-white">
+        <thead>
+            <tr>
+                <th scope="col">Отправитель</th>
+                <th scope="col">Название</th>
+                <th scope="col">Текст</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Количество файлов</th>
+            </tr>
+        </thead>
+        <tbody id="messages_table">
+        </tbody>
+    </table>
+</div>
+
+<script src="{% static 'js/email_reader.js' %}"></script>
+</body>
+</html>
